@@ -45,20 +45,37 @@ $boletim = [
                     <th>1º Bi</th>
                     <th>2º Bi</th>
                     <th>3º Bi</th>
+                    <th>Média</th>
+                    <th>Status</th>
                 </tr>
             </thead>
     <tbody>
         <?php
 // Laço Externo(LINHAS): Percorre os 5 alunos.
         for ($i=0;$i<count($boletim);$i++) {
+// Variável para acumular as notas APENAS do aluno atual.
+            $somasNotas=0;
 // Abre a linha para a tabela HTML para o aluno atual.
             echo "<tr>";
-// Laço Interno(COLUNAS): Percorre os 4 dados do aluno atual (nome + 3 notas).
-            for ($j=0; $j < count($boletim[$i]);$j++){
+// Imprime manualmente a coluna 0 (o nome) em negrito.
+            echo "<td><strong>".$boletim[$i][0]."</strong></td>";
+// Laço Interno(COLUNAS) costumizado:Começa em 1 (pula o nome) e vai até 3 (as três notas).
+            for ($j=1; $j<= 3;$j++){
 // Imprime a célula <td> com o dado exato naquela [linha][coluna].
             echo "<td>".$boletim[$i][$j]."</td>";
+// Acumula a nota na soma.
+            $somasNotas = $somasNotas + $boletim[$i][$j];
             }
 // Fim do laço interno ($j).
+            $media = $somasNotas /3;
+// Imprime a célula da média usando number_format para ficar com 1 casa decimal.
+            echo "<td class='fw-bold text-primary'>".number_format($media,1,',','.')."</td>";
+// Regra de Negócio: Status do aluno
+            if ($media >= 7.0){
+            echo "<td class='text-success fw-bold'>Aprovado</td>";
+            } else {
+                echo "<td class='text-danger fw-bold'>Reprovado</td>";
+            }
 // Fecha a linha da tabela HTML antes de passar para o próximo.
             echo "</tr>";
         }
