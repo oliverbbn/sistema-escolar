@@ -8,6 +8,7 @@ $boletim = [
     ["João Souza", 4.0, 5.0, 5.5], //Linha 3
     ["Mariana Vaz", 7.5, 8.0, 8.5]  //Linha 4
 ];
+$somaDaturma=0;
 ?>
 
 <!DOCTYPE html>
@@ -68,21 +69,34 @@ $boletim = [
             }
 // Fim do laço interno ($j).
             $media = $somasNotas /3;
+            $somaDaTurma= ;
+            $totalAlunos = count($boletim);
+            $somaMediaTurma = $somaDaTurma/$totalAlunos;
+
 // Imprime a célula da média usando number_format para ficar com 1 casa decimal.
             echo "<td class='fw-bold text-primary'>".number_format($media,1,',','.')."</td>";
 // Regra de Negócio: Status do aluno
             if ($media >= 7.0){
             echo "<td class='text-success fw-bold'>Aprovado</td>";
             } else {
-                echo "<td class='text-danger fw-bold'>Reprovado</td>";
+            echo "<td class='text-danger fw-bold'>Reprovado</td>";
             }
 // Fecha a linha da tabela HTML antes de passar para o próximo.
             echo "</tr>";
         }
 // Fim do laço externo ($i).
+
         ?>
-    </tbody>
-        </table>
+      </tbody>
+       </table>
+         
+      <div class="alert alert-warning" class="card">
+        <div class="card-body">
+            <h4 class="text-center">
+                <?php echo "Média Geral da Turma: $somaMediaTurma"?>
+            </h4>
+        </div>
+    </div>
     </div>
     </body>
     </html>
