@@ -8,7 +8,9 @@ $boletim = [
     ["João Souza", 4.0, 5.0, 5.5], //Linha 3
     ["Mariana Vaz", 7.5, 8.0, 8.5]  //Linha 4
 ];
-$somaDaturma=0;
+$somaMediaTurma=0;
+$maiorMedia = 0;
+$nomeMelhorAluno = "";
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@ $somaDaturma=0;
         </style>
     </head>
     <body class="container mt-5">
-        <h2 class="text-primary mb-4 text-center">Boletim Escolar</h2>
+        <h2 class="text-primary mb-4 text-center">Boletim Escolar de HoWars</h2>
 <!--
     <div class="container mt-4">
         <h2>Teste de Coordenadas da Matriz</h2>
@@ -38,7 +40,7 @@ $somaDaturma=0;
     </div>
 -->
     <div class="container mt-5">
-        <h3 class="text-primary text-center">Boletim Geral da Turma</h3>
+        <h3 class="text-secondary text-center">Boletim Geral da Turma</h3>
         <table class="table table-bordered table-striped mt-3">
             <thead class="table-dark">
                 <tr>
@@ -69,10 +71,13 @@ $somaDaturma=0;
             }
 // Fim do laço interno ($j).
             $media = $somasNotas /3;
-            $somaDaTurma= ;
-            $totalAlunos = count($boletim);
-            $somaMediaTurma = $somaDaTurma/$totalAlunos;
-
+            $mediaAtual=$media;
+        
+            $somaMediaTurma = $somaMediaTurma + $media;
+            $mediaTurma = $somaMediaTurma/count($boletim);  
+            
+            
+            
 // Imprime a célula da média usando number_format para ficar com 1 casa decimal.
             echo "<td class='fw-bold text-primary'>".number_format($media,1,',','.')."</td>";
 // Regra de Negócio: Status do aluno
@@ -93,10 +98,18 @@ $somaDaturma=0;
       <div class="alert alert-warning" class="card">
         <div class="card-body">
             <h4 class="text-center">
-                <?php echo "Média Geral da Turma: $somaMediaTurma"?>
+                <?php echo "Média Geral da Turma:" ?> <?php echo number_format($mediaTurma,1,',','.') ?>
             </h4>
         </div>
-    </div>
+        </div>
+        <div class="alert alert-success" class="card">
+        <div class="card-body">
+            <h2 class="text-secondary mb-2  text-center">Pódio:</h2>
+            <h4 class="text-center">
+                <?php echo "Nome do melhor aluno: $nomeMelhorAluno e Média:" ?> <?php echo number_format($maiorMedia,1,',','.') ?>
+            </h4>
+        </div>
+        </div>
     </div>
     </body>
     </html>
